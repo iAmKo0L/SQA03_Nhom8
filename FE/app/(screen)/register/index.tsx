@@ -36,8 +36,8 @@ const Register = () => {
       email: "",
       name: "",
       checkPassword: "",
-      dateOfBirth: undefined,
-      gender: undefined,
+      dateOfBirth: "",
+      gender: "male",
     },
   });
   const registerMutation = useMutation({

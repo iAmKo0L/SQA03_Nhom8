@@ -33,8 +33,10 @@ class Config:
         "Nộm hoa chuối", "Nui xào bò", "Súp cua"
     ]
     NUM_CLASSES = len(CLASS_NAMES)
-    SQLALCHEMY_DATABASE_URI = (
-        "mysql+pymysql://root:KbTJJDSQZddVEFYHVWIEpiUqdXlDOrru@mainline.proxy.rlwy.net:26370/food_db?charset=utf8mb4&ssl_disabled=false"
+    # Prefer .env / runtime env for database configuration.
+    SQLALCHEMY_DATABASE_URI = os.getenv(
+        "SQLALCHEMY_DATABASE_URI",
+        "mysql+pymysql://root:123456@mysql-db:3306/tuetinh_db?charset=utf8mb4"
     )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     CLOUDINARY_CLOUD_NAME = "dn9slxnjb"
