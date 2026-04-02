@@ -1,6 +1,8 @@
 import requests
 
-AUTH_SERVICE_URL = "http://localhost:8080/api/users/profile"
+# Called from inside Docker containers; `localhost` points to the current container.
+# Use docker-compose service name so the request reaches AuthService.
+AUTH_SERVICE_URL = "http://drug-service:8081/api/users/profile"
 
 def fetch_user_profile(jwt_token: str):
     headers = {
