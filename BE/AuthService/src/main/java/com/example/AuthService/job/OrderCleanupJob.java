@@ -1,8 +1,6 @@
 package com.example.AuthService.job;
 import lombok.extern.slf4j.Slf4j;
-import com.example.AuthService.entity.Drug;
 import com.example.AuthService.entity.Order;
-import com.example.AuthService.entity.OrderItem;
 import com.example.AuthService.enums.OrderStatus;
 import com.example.AuthService.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -53,23 +51,7 @@ public class OrderCleanupJob {
                 continue;
             }
 
-            // 1️⃣ Trả kho đã reserve
-            for (OrderItem item : order.getItems()) {
-                Drug drug = item.getDrug();
-
-                log.info(
-                        "[CLEANUP] Release reserve: orderId={}, drugId={}, qty={}",
-                        order.getId(),
-                        drug.getId(),
-                        item.getQuantity()
-                );
-
-                drug.setReservedQuantity(
-                        drug.getReservedQuantity() - item.getQuantity()
-                );
-            }
-
-            // 2️⃣ Huỷ đơn
+            // Huỷ đơn hết hạn
             order.setStatus(OrderStatus.CANCELLED);
 
             log.info(

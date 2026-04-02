@@ -40,11 +40,11 @@
       // "FOOD": "http://172.28.26.203:8080",
       // "AGENT": "http://172.28.26.203:8080",
       // "API_GETWAY": "http://172.28.26.203:8080",
-      "AUTH": "http://192.168.0.104:8080",
-      "FACE": "http://192.168.0.104:8080",
-      "FOOD": "http://192.168.0.104:8080",
-      "AGENT": "http://192.168.0.104:8080",
-      "API_GETWAY": "http://192.168.0.104:8080"
+      "AUTH": "http://10.0.4.130:8080",
+      "FACE": "http://10.0.4.130:8080",
+      "FOOD": "http://10.0.4.130:8080",
+      "AGENT": "http://10.0.4.130:8080",
+      "API_GETWAY": "http://10.0.4.130:8080"
       // Previous configs (backup):
       // "AUTH": "http://10.0.2.2:8080",  // Android Emulator localhost
       // "AUTH": "http://localhost:8080",  // iOS Simulator / Web

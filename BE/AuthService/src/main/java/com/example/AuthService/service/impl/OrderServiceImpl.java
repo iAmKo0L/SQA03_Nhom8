@@ -60,16 +60,13 @@ public class OrderServiceImpl implements OrderService {
             }
 
 
-            Integer available = inventoryService.calculateStock(drug.getId()) - drug.getReservedQuantity();
+            Integer available = inventoryService.calculateStock(drug.getId());
 
             if (available < itemReq.getQuantity()) {
                 throw new RuntimeException(
                         "Không đủ tồn kho cho thuốc: " + drug.getName()
                 );
             }
-
-
-            drug.setReservedQuantity(drug.getReservedQuantity() + itemReq.getQuantity());
 
             BigDecimal unitPrice = drug.getPrice();
             BigDecimal itemTotal = unitPrice.multiply(BigDecimal.valueOf(itemReq.getQuantity()));
@@ -219,12 +216,6 @@ public class OrderServiceImpl implements OrderService {
         OrderStatus status = order.getStatus();
 
         if (status == OrderStatus.PENDING) {
-
-            for (OrderItem item : order.getItems()) {
-                Drug drug = item.getDrug();
-                int qty = item.getQuantity();
-                drug.setReservedQuantity(drug.getReservedQuantity() - qty);
-            }
 
             order.setStatus(OrderStatus.CANCELLED);
             orderRepository.save(order);
